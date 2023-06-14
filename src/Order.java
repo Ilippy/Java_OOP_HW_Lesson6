@@ -55,9 +55,9 @@ public class Order {
             writer.write("\"client lastName\":\""+ client.getLastName() + "\",\n");
             writer.write("\"client phoneNumber\":\""+ client.getPhoneNumber() + "\",\n");
             writer.write("\"product brand\":\""+product.getBrand()+"\",\n");
-            writer.write("\"product brand\":\""+product.getName()+"\",\n");
-            writer.write("\"product price\":"+product.getPrice()+"\n");
-            writer.write("\"qnt\":"+qnt+",\n");
+            writer.write("\"product name\":\""+product.getName()+"\",\n");
+            writer.write("\"product price\":"+product.getPrice()+",\n");
+            writer.write("\"qnt\":"+qnt+"\n");
             writer.write("}\n");
             writer.flush();
         } catch (IOException ex) {
@@ -79,7 +79,7 @@ public class Order {
 
         String productBrand = prompt("Brand name: ");
         String productName = prompt("Product name: ");
-        int productPrice = Integer.parseInt(prompt("Price: "));
+        double productPrice = Double.parseDouble(prompt("Price: "));
 
         if(product != null) {
             product.setBrand(productBrand);
