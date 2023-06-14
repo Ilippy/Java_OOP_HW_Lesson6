@@ -14,6 +14,12 @@ public class Order {
     static {
         count = 0;
     }
+
+    public Order() {
+        id = count++;
+        inputFromConsole();
+    }
+
     public Order(Client client, Product product, int qnt) {
         this.client = client;
         this.product = product;
@@ -60,13 +66,27 @@ public class Order {
     }
 
     public void inputFromConsole(){
-        client.setFirstName(prompt("Client firstname: "));
-        client.setLastName(prompt("Client lastname: "));
-        client.setPhoneNumber(prompt("Phone number: "));
+        String clientFirstName = prompt("Client firstname: ");
+        String clientLastName = prompt("Client lastname: ");
+        String clientPhoneNumber = prompt("Phone number: ");
 
-        product.setBrand(prompt("Brand name: "));
-        product.setName(prompt("Product name: "));
-        product.setPrice(Integer.parseInt(prompt("Price: ")));
+        if(client != null) {
+            client.setFirstName(clientFirstName);
+            client.setLastName(clientLastName);
+            client.setPhoneNumber(clientPhoneNumber);
+        } else
+            client = new Client(clientFirstName, clientLastName, clientPhoneNumber);
+
+        String productBrand = prompt("Brand name: ");
+        String productName = prompt("Product name: ");
+        int productPrice = Integer.parseInt(prompt("Price: "));
+
+        if(product != null) {
+            product.setBrand(productBrand);
+            product.setName(productName);
+            product.setPrice(productPrice);
+        } else
+            product = new Product(productBrand, productName, productPrice);
 
         qnt = Integer.parseInt(prompt("Quantity: "));
     }
